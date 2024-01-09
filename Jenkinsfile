@@ -1,18 +1,45 @@
 pipeline {
     agent any
 
+    environment {
+        // 设置环境变量，比如代码仓库
+        GIT_URL = 'https://github.com/300tty/CI-with-github.git'
+    }
+
     stages {
-        stage('build from github') {
+        stage('Checkout') {
             steps {
-                echo 'fetch code'
-                echo 'build code'
+                
+                git(url: "${GIT_URL}", branch: 'main')
             }
         }
-        stage('test from github') {
+        stage('Build') {
             steps {
-                echo 'running test1'
-                echo 'running test2'
+                
+                sh 'echo "Replace this line with your build command"'
+              
+               
             }
+        }
+        stage('Test') {
+            steps {
+                
+                sh 'echo "Replace this line with your test command"'
+             
+                // sh 'pytest'
+            }
+        }
+    }
+    post {
+      
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'Build was a success!'
+        }
+        failure {
+            echo 'Build failed!'
         }
     }
 }
