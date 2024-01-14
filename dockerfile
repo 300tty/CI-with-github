@@ -11,7 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . ./
 
 
-RUN ls -la tests/
 
 # 运行测试
 RUN pytest tests/
