@@ -16,7 +16,8 @@ jobs:
       run: docker --version
     - name: Build Docker image
       run: docker build . -t myapp
-      
+    - name: Run tests
+      run: docker run --entrypoint pytest myapp  
     - name: Run unit and integration tests
       run: docker run myapp pytest
     
