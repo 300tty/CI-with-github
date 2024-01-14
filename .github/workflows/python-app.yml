@@ -12,7 +12,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    
+    - name: Check Docker version
+      run: docker --version
     - name: Build Docker image
       run: docker build . -t myapp
       
