@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . ./
 
 # Install pytest as a development dependency
+RUN pip intsall pytest
 RUN pip install --no-cache-dir pytest
 
 # Final image stage
