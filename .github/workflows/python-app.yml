@@ -12,19 +12,20 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: Build Docker image
-      run: docker build . -t myapp
 
-    
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: false 
+
     - name: Run unit and integration tests
       run: docker run myapp pytest
-    
     
     - name: Push Docker image to DockerHub
       if: success() && github.event_name == 'push'
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker tag myapp yunzeshi123/myapp:latest
-        docker push yunzeshi123/myapp:latest
-
-
+        docker tag myapp your-dockerhub-username/myapp:latest
+        docker push your-dockerhub-username/myapp:latest
