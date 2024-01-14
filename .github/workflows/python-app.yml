@@ -23,5 +23,5 @@ jobs:
       if: success() && github.event_name == 'push'
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker tag myapp yunzeshi123/myapp:latest
-        docker push yunzeshi123/myapp:latest
+        docker tag myapp yunze.shi123@gmail.com/myapp:latest
+        docker push yunze.shi123@gmail.com/myapp:latest
