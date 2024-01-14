@@ -10,8 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . ./
 
-# Install pytest
-RUN pip install pytest
+# Install pytest as a development dependency
+RUN pip install --no-cache-dir pytest
 
 # Final image stage
 FROM python:3.9-slim
