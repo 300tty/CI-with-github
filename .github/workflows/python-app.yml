@@ -12,8 +12,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
-    - name: Debug - Print PATH
-      run: docker run myapp echo $PATH
     - name: Build Docker image
       run: docker build . -t myapp
 
