@@ -12,7 +12,7 @@ COPY . ./
 
 # Install pytest as a development dependency
 RUN pip install --no-cache-dir pytest
-
+Run pip install docker
 RUN docker build . -t myapp
 # Final image stage
 FROM python:3.9-slim
