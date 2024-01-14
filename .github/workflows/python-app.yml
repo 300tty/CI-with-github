@@ -7,18 +7,18 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-push:
+  build-and-test:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Build and push Docker image
-      run: |
-        docker build . -t myapp
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push myapp
 
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: false  # 设置为 false，因为我们不需要在这一步推送
 
     - name: Run unit and integration tests
       run: docker run myapp pytest
