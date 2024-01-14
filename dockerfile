@@ -1,19 +1,29 @@
+# Builder stage
+FROM python:3.9-slim as builder
+
+WORKDIR /app
+
+# Copy the requirements first to leverage Docker cache
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . ./
+
+# Install pytest as a development dependency
+RUN pip install --no-cache-dir pytest
+
 # Final image stage
 FROM python:3.9-slim
 
 # Create a non-root user
 RUN useradd -m myuser
+USER myuser
 
 WORKDIR /app
 
 # Copy application from builder stage
 COPY --from=builder /app ./
-
-# Install pytest here to ensure it's available in the final image
-RUN pip install pytest
-
-# Switch to non-root user
-USER myuser
 
 # Expose port 5000 for the application
 EXPOSE 5000
