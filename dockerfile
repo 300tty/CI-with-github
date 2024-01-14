@@ -10,6 +10,8 @@ RUN pip install pytest
 # Copy the rest of the application
 COPY . ./
 
+RUN which pytest
+
 # Final image stage
 FROM python:3.9-slim
 
