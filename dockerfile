@@ -13,7 +13,7 @@ COPY . ./
 
 
 # 运行测试
-RUN pytest tests/
+RUN pytest tests/ -v
 # Final image stage
 FROM python:3.9-slim
 
